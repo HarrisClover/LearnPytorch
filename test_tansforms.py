@@ -1,8 +1,7 @@
+from torch.utils.tensorboard.writer import SummaryWriter
 from torchvision import transforms
 from PIL import Image
 #import cv2
-from torch.utils.tensorboard import SummaryWriter
-
 img_dir = "hymenoptera_data\\train\\ants\\0013035.jpg"
 img = Image.open(img_dir)
 #tensor_img = cv2.()
