@@ -15,5 +15,30 @@ img_tensor = trans_tensor(img)
 #Normalize
 img_normalize = transforms.Normalize([0.7,0.9,0.1],[0.5,0.5,0.5])
 img_nor = img_normalize(img_tensor)
-writer.add_image('Normalize_image1', img_nor, 0)
+
+#Resize
+tran_resize = transforms.Resize((250,260))
+img_resize = tran_resize(img)
+img_tensor = trans_tensor(img_resize)
+
+
+#Compose
+t_resize = transforms.Resize(250)
+img_t_compose = transforms.Compose([t_resize,trans_tensor])
+com_img = img_t_compose(img)
+writer.add_image('image_Compose_one', com_img, 0)
+
+#RandomCrop1
+for i in range(10):
+    t_randcrop = transforms.RandomCrop(100)
+    img_rc = t_randcrop(img_tensor)
+    writer.add_image("RandomCrop",img_rc,i)
+
+#RandomCrop2
+trans_random = transforms.RandomCrop(50)
+trans_compe = transforms.Compose([trans_random,trans_tensor])
+for j in range(10):
+    img_random = trans_compe(img)
+    writer.add_image("Random2",img_random,j)
+
 writer.close()
